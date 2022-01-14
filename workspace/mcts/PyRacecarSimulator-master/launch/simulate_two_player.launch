@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Launch the racecar model -->
+  <group ns="racecar_one">
+    <param name="tf_prefix" value="r1" />
+    <include file="$(find PyRacecarSimulator)/launch/racecar_model.launch" />
+  </group>
+
+  <group ns="racecar_two">
+    <param name="tf_prefix" value="r2" />
+    <include file="$(find PyRacecarSimulator)/launch/racecar_model.launch" />
+  </group>
+
+
+  <!-- Launch a map from the maps folder-->
+  <arg name="map" default="$(find PyRacecarSimulator)/maps/map.yaml"/>
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map)"/>
+
+  <!-- Begin the simulator with the parameters from params.yaml -->
+  <node pkg="PyRacecarSimulator" name="ros_interface" type="ros_interface_two_player.py" output="screen">
+    <rosparam command="load" file="$(find PyRacecarSimulator)/params.yaml"/>
+  </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find PyRacecarSimulator)/launch/two_player_simulator.rviz" output="screen"/>
+
+</launch>

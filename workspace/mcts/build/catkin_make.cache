@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/echo/Desktop/feiyu/Coding/feiyuxiaothu/ROS_beginner/workspace/mcts/devel -DCMAKE_INSTALL_PREFIX=/home/echo/Desktop/feiyu/Coding/feiyuxiaothu/ROS_beginner/workspace/mcts/install -G Unix Makefiles
